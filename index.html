@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Feedback System - Poster</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .poster {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(10, 15, 40, 0.85);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+            border: 1px solid #4a6fa5;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            padding: 25px 40px;
+            text-align: center;
+            border-bottom: 3px solid #00c6ff;
+        }
+        
+        .university-name {
+            font-size: 2.0rem;
+            font-weight: bold;
+            color: #00c6ff;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .student-name {
+            font-size: 1.6rem;
+            color: #a0d2ff;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 48px;
+            color: #00c6ff;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #a0d2ff;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content {
+            padding: 30px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .section {
+            background: rgba(25, 35, 65, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #00c6ff;
+        }
+        
+        h2 {
+            color: #00c6ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #00c6ff;
+            border-radius: 50%;
+        }
+        
+        /* Screenshot container with images */
+        .screenshot-container {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #2d4064;
+            overflow: hidden;
+        }
+        
+        .screenshot-img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+        }
+        
+        .screenshot-caption {
+            color: #a0d2ff;
+            font-size: 0.9rem;
+            text-align: center;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature {
+            background: rgba(0, 198, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-3px);
+            background: rgba(0, 198, 255, 0.2);
+            border: 1px solid #00c6ff;
+        }
+        
+        .footer {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            padding: 25px 40px;
+            text-align: center;
+            border-top: 3px solid #00c6ff;
+        }
+        
+        .tech {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .tech-tag {
+            background: rgba(0, 198, 255, 0.15);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #00c6ff;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .university-name {
+                font-size: 1.7rem;
+            }
+            
+            .student-name {
+                font-size: 1.4rem;
+            }
+            
+            .screenshot-img {
+                height: auto;
+            }
+        }
+        
+        /* ===== FIXED PRINT CSS FOR SINGLE PAGE ===== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm;
+            }
+            
+            body {
+                background: white !important;
+                color: #000 !important;
+                display: block !important;
+                padding: 0 !important;
+                min-height: auto !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                overflow: hidden !important;
+            }
+            
+            .poster {
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                background: white !important;
+                page-break-after: avoid !important;
+                position: relative !important;
+                overflow: hidden !important;
+            }
+            
+            .header, .title-section, .section, .footer {
+                background: white !important;
+                border-color: #333 !important;
+                color: #000 !important;
+            }
+            
+            h1, h2, .university-name, .student-name {
+                color: #003366 !important;
+                text-shadow: none !important;
+                background: none !important;
+                -webkit-text-fill-color: #003366 !important;
+            }
+            
+            .subtitle, .feature-description, .screenshot-caption {
+                color: #333 !important;
+            }
+            
+            .content {
+                grid-template-columns: 1fr !important;
+                padding: 20px !important;
+                gap: 15px !important;
+                height: auto !important;
+            }
+            
+            .screenshot-img {
+                max-width: 100% !important;
+                height: auto !important;
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                max-height: 120px !important;
+            }
+            
+            .screenshot-container {
+                height: 150px !important;
+                overflow: hidden !important;
+            }
+            
+            .features {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+            }
+            
+            .feature {
+                background: #f5f9ff !important;
+                border: 1px solid #cce0ff !important;
+                color: #003366 !important;
+            }
+            
+            .tech-tag {
+                background: #e6f0ff !important;
+                border-color: #99c2ff !important;
+                color: #003366 !important;
+            }
+            
+            .logo-icon {
+                color: #003366 !important;
+            }
+            
+            /* Ensure no page breaks */
+            .section, .feature-box, .screenshot-container {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            
+            /* Critical: Reduce font sizes for print */
+            .university-name { font-size: 1.8rem !important; }
+            .student-name { font-size: 1.4rem !important; }
+            h1 { font-size: 2.8rem !important; }
+            h2 { font-size: 1.6rem !important; }
+            .subtitle { font-size: 1.2rem !important; }
+            .screenshot-caption { font-size: 0.8rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="header">
+            <div class="university-name">UNIVERSITY OF RAWALPINDI</div>
+            <div class="student-name">Atizaz Hassan</div>
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <h1>Teacher Feedback System</h1>
+            </div>
+            <p class="subtitle">A Python application for collecting, analyzing, and visualizing teacher performance feedback from students and administrators</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Key Features</h2>
+                
+                <!-- ACTUAL SCREENSHOT IMAGES -->
+                <div class="screenshot-container">
+                    <img src="images/student_form.png" alt="Student Feedback Form" class="screenshot-img">
+                    <div class="screenshot-caption">Student Feedback Form Interface (Ratings, Comments, Anonymous Submissions)</div>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/teacher_dashboard.png" alt="Teacher Dashboard" class="screenshot-img">
+                    <div class="screenshot-caption">Teacher Dashboard View (Feedback Aggregation & Analysis)</div>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/admin_panel.png" alt="Admin Panel" class="screenshot-img">
+                    <div class="screenshot-caption">Admin Export Functionality (CSV Data Export & Teacher Management)</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>System Capabilities</h2>
+                <div class="features">
+                    <div class="feature">Anonymous Feedback Submission</div>
+                    <div class="feature">5-Point Rating System</div>
+                    <div class="feature">Real-time Analytics</div>
+                    <div class="feature">Multi-user Roles (Student, Teacher, Admin)</div>
+                    <div class="feature">CSV Data Export</div>
+                    <div class="feature">Responsive Web Interface</div>
+                </div>
+                
+                <h2 style="margin-top: 25px;">Technical Stack</h2>
+                <div class="tech">
+                    <div class="tech-tag">Python</div>
+                    <div class="tech-tag">Streamlit</div>
+                    <div class="tech-tag">Pandas</div>
+                    <div class="tech-tag">SQLite</div>
+                    <div class="tech-tag">HTML/CSS</div>
+                    <div class="tech-tag">Responsive Design</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div style="font-size: 1.4rem; margin-bottom: 8px; color: #003366 !important;">Academic Project</div>
+            <div style="color: #333 !important; font-size: 1.1rem;">
+                AI • Department of Computer Science
+            </div>
+        </div>
+    </div>
+</body>
+</html>

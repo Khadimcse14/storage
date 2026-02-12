@@ -1,16 +1,19 @@
-# HTML
-# Archive your static HTML project and save it with the build record.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+- main   # or your branch name
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: ArchiveFiles@2
+- task: AzureCLI@2
+  displayName: Upload static website files
   inputs:
-    rootFolderOrFile: '$(build.sourcesDirectory)'
-    includeRootFolder: false
+    azureSubscription: 'azure-storage-connection'
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az storage blob upload-batch \
+        --account-name test12387 \
+        --destination '$web' \
+        --source . \
+        --overwrite

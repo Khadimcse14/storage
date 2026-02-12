@@ -8,7 +8,7 @@ steps:
 - task: AzureCLI@2
   displayName: Upload static website files
   inputs:
-    azureSubscription: 'azure-storage-connection'
+    azureSubscription: 'new'
     scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
